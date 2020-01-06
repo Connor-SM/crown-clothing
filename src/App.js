@@ -43,7 +43,7 @@ class App extends React.Component {
     const { hidden, toggleCartHidden } = this.props;
 
     return (
-      <div onClick={!hidden && toggleCartHidden}>
+      <div onClick={!hidden ? toggleCartHidden : () => {}}>
         <Header />
         <Switch>
           <Route exact path='/' component={HomePage} />
