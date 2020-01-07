@@ -8,6 +8,11 @@ import Header from './components/header/header.component';
 import SignInAndSignUp from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user/user.actions';
+import CheckoutPage from './pages/checkout/checkout.component';
+
+import { createStructuredSelector } from 'reselect';
+import { selectCartHidden } from './redux/cart/cart.selectors';
+import { selectCurrentUser } from './redux/user/user.selector';
 
 // own import to try and get cart dropdown hidden by clicking anywhere
 import toggleCartHidden from './redux/cart/cart.actions';
@@ -48,6 +53,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route path='/shop' component={ShopPage} />
+          <Route path='/checkout' component={CheckoutPage} />
           <Route exact path='/signin' 
             render={() => this.props.currentUser ? 
               <Redirect to='/' />
@@ -61,9 +67,9 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ user, cart }) => ({
-  currentUser: user.currentUser,
-  hidden: cart.hidden
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden
 });
 
 const mapDispatchToProps = dispatch => ({
