@@ -26,5 +26,20 @@
         font-size: 18px;
         margin: 50px auto;
     }
-  }
-  
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+    
+    /* Track */
+    ::-webkit-scrollbar-track {
+        border-radius: 10%;
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: grey;
+        border-radius: 10%;
+    }
+}
