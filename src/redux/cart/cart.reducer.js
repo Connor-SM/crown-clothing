@@ -3,7 +3,9 @@ import { addItemToCart, removeItemFromCart, clearItemFromCart } from './cart.uti
 
 const INITIAL_STATE = {
     hidden: true,
-    cartItems: []
+    cartItems: [],
+    clearItemModalOpen: false,
+    currentItem: {}
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -27,6 +29,12 @@ const cartReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 cartItems: removeItemFromCart(state.cartItems, action.payload)
+            }
+        case CartActionTypes.CLEAR_ITEM_MODAL_OPEN:
+            return {
+                ...state,
+                currentItem: action.payload,
+                clearItemModalOpen: !state.clearItemModalOpen
             }
         default:
             return state;

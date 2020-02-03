@@ -32,9 +32,7 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
 export const clearItemFromCart = (cartItems, cartItemToClear) => {
     const existingCartItem = cartItems.find(cartItem => cartItem.id === cartItemToClear.id);
 
-    const confirmClear = window.confirm('Are you sure?');
-
-    return (confirmClear && existingCartItem) ?
+    return (existingCartItem) ?
         cartItems.filter( cartItem => 
             cartItem.id !== cartItemToClear.id)
         : cartItems

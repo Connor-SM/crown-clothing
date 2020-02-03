@@ -3,12 +3,17 @@ import React from 'react';
 import './checkout-item.styles.scss';
 
 import { connect } from 'react-redux';
-import { clearItemFromCart, addItem, removeItem } from '../../redux/cart/cart.actions';
+import { createStructuredSelector } from 'reselect';
+import { clearItemModalOpen, addItem, removeItem } from '../../redux/cart/cart.actions';
+import { selectClearItemModal } from '../../redux/cart/cart.selectors';
 
-const CheckoutItem = ({ clearItem, cartItem, removeItem, addItem }) => {
+import ClearItemModal from '../clear-item-modal/clear-item-modal.component';
+
+const CheckoutItem = ({ cartItem, removeItem, addItem, clearItemModal, clearItemModalOpen }) => {
     const { name, imageUrl, price, quantity } = cartItem;
     return (
         <div className='checkout-item'>
+            { clearItemModal ? <ClearItemModal /> : null }
             <div className='image-container'>
                 <img src={imageUrl} alt='item' />
             </div>
@@ -30,7 +35,7 @@ const CheckoutItem = ({ clearItem, cartItem, removeItem, addItem }) => {
             <span className='price'>${price}</span>
             <div 
                 className='remove-button'
-                onClick={() => clearItem(cartItem)}
+                onClick={() => clearItemModalOpen(cartItem)}
             >
                 &#10005;
             </div>
@@ -38,10 +43,14 @@ const CheckoutItem = ({ clearItem, cartItem, removeItem, addItem }) => {
     )
 };
 
-const mapDispatchToProps = dispatch => ({
-    clearItem: item => dispatch(clearItemFromCart(item)),
-    removeItem: item => dispatch(removeItem(item)),
-    addItem: item => dispatch(addItem(item))
+const mapStateToProps = createStructuredSelector({
+    clearItemModal: selectClearItemModal
 });
 
-export default connect(null, mapDispatchToProps)(CheckoutItem);
+const mapDispatchToProps = dispatch => ({
+    removeItem: item => dispatch(removeItem(item)),
+    addItem: item => dispatch(addItem(item)),
+    clearItemModalOpen: item => dispatch(clearItemModalOpen(item))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutItem);

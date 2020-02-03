@@ -28,3 +28,13 @@ export const selectCartTotal = createSelector(
             0
     )
 );
+
+export const selectClearItemModal = createSelector(
+    [selectCart],
+    cart => cart.clearItemModalOpen
+);
+
+export const selectCurrentItem = createSelector(
+    [selectCart],
+    cart => cart.currentItem,
+)

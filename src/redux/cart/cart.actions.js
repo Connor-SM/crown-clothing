@@ -19,4 +19,9 @@ export const removeItem = item => ({
     payload: item
 });
 
+export const clearItemModalOpen = (item = {}) => ({
+    type: CartActionTypes.CLEAR_ITEM_MODAL_OPEN,
+    payload: item
+})
+
 export default toggleCartHidden;

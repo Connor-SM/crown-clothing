@@ -16,6 +16,7 @@
   justify-content: center;
   overflow: hidden;
 
+
   &:hover {
     background-color: white;
     color: black;
@@ -43,6 +44,11 @@
       border: none;
     }
   }
-
 }
-  
+
+.modal-button {
+  display: inline-block;
+  margin: 10px;
+  justify-content: space-between;
+  width: 40%;
+}
