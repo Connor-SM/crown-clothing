@@ -15,6 +15,7 @@ const ClearItemModal = ({ clearItemModalOpen, currentItem, clearItemFromCart }) 
             <div className="modal">
                 <h5>Are you sure you want to remove {currentItem.name}?</h5>
                 <CustomButton 
+                    // eslint-disable-next-line
                     onClick={() => ( clearItemFromCart(currentItem), clearItemModalOpen() )}
                     modalButton
                     inverted
