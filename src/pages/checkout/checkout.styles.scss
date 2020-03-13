@@ -30,6 +30,23 @@
       text-align: right;
     }
 
+    .box-wrap {
+      width: 100%;
+      margin-top: 25px;
+      height: 25px;
+
+      button {
+        float: right;
+      }
+    }
+
+    .test-warning {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 24px;
+      color: red;
+    }
+
     .empty-message {
         font-size: 30px;
         margin: 50px auto;
