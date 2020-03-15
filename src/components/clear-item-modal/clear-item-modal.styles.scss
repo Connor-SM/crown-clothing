@@ -8,14 +8,21 @@
     background: rgba(0, 0, 0,  0.3);
 
     .modal {
-        width: 400px;
+        width: 50vw;
         height: 175px;
+        min-width: 280px;
         text-align: center;
         align-items: center;
         justify-content: space-evenly;
         position: fixed;
-        top: 35%;
+        top: 30%;
         background: white;
-        left: 40%;
+        left: 25%;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .modal {
+            left: 15%;
+        }
     }
 }
