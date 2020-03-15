@@ -1,29 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { updateSearchTerm } from '../../redux/shop/shop.actions';
+import { selectSearchTerm } from '../../redux/shop/shop.selector';
 
 import './search-bar.styles.scss';
 
-class SearchBar extends React.Component {
-    constructor(props) {
-        super(props);
+const SearchBar = ({ searchTerm, updateSearchTerm }) => (
+    <div className='search-bar'>
+        <input value={searchTerm} onChange={e => updateSearchTerm(e.target.value)} />
+    </div>
+);
 
-        this.state = {
-            searchTerm: ''
-        };
-    }
+const mapStateToProps = (state) => ({
+    searchTerm: selectSearchTerm(state)
+});
 
-    updateSearch = (e) => {       
-        this.setState({ searchTerm: e.target.value }, () => {
-            console.log(this.state.searchTerm);
-        });
-    }
+const mapDispatchToProps = dispatch => ({
+    updateSearchTerm: (value) => dispatch(updateSearchTerm(value))
+});
 
-    render() {
-        return (
-            <div className='search-bar'>
-                <input onChange={e => this.updateSearch(e)} />
-            </div>
-        );
-    }
-};
-
-export default SearchBar;
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
