@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { searchItems } from '../../redux/shop/shop.actions';
 
 import './search-bar.styles.scss';
 
@@ -13,11 +11,9 @@ class SearchBar extends React.Component {
         };
     }
 
-    updateSearch = (e) => {
-        const { searchItems } = this.props;
-        
+    updateSearch = (e) => {       
         this.setState({ searchTerm: e.target.value }, () => {
-            searchItems(this.state.searchTerm);
+            console.log(this.state.searchTerm);
         });
     }
 
@@ -30,8 +26,4 @@ class SearchBar extends React.Component {
     }
 };
 
-const mapDispatchToProps = dispatch => ({
-    searchItems: (value) => dispatch(searchItems(value))
-});
-
-export default connect(null, mapDispatchToProps)(SearchBar);
+export default SearchBar;
